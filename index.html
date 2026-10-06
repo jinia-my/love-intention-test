@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="暧昧期关系诊断：16 道题，从心意浓度、主动投入、明确程度、相处稳定性四个维度，看清他/她到底怎么想你。">
+<title>暧昧期关系诊断 · 他/她到底怎么想你？</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23D97A6C'/%3E%3Cpath d='M16 24s-6.4-3.9-6.4-8.6A3.8 3.8 0 0 1 16 12.6a3.8 3.8 0 0 1 6.4 2.8C22.4 20.1 16 24 16 24z' fill='%23FFF7F3'/%3E%3C/svg%3E">
+<style>
+/* ============ 设计变量 ============ */
+:root{
+  --bg:#FDF8F4;
+  --surface:#FFFFFF;
+  --surface-2:#FFFCFA;
+  --ink:#33262B;
+  --ink-2:#6E5C62;
+  --ink-3:#9C8B91;
+  --rose:#D97A6C;
+  --rose-deep:#B85850;
+  --rose-soft:#F6DCD6;
+  --blush:#FCEFE9;
+  --mauve:#8E6B78;
+  --sage:#7C9A83;
+  --gold:#C79A5E;
+  --line:rgba(51,38,43,.10);
+  --line-2:rgba(51,38,43,.055);
+  --shadow-s:0 1px 2px rgba(51,38,43,.04), 0 10px 26px -16px rgba(51,38,43,.20);
+  --shadow-m:0 2px 6px rgba(51,38,43,.04), 0 26px 54px -28px rgba(51,38,43,.26);
+  --r-s:12px; --r-m:18px; --r-l:26px;
+}
+
+/* ============ 基础 ============ */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;padding:0;min-height:100%;
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  color:var(--ink);line-height:1.68;font-size:16px;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  background:var(--bg);
+  overflow-x:hidden;
+}
+.bg-layer{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(760px 520px at 8% -8%, #FDE7DF 0%, rgba(253,231,223,0) 62%),
+    radial-gradient(700px 460px at 97% 3%, #F1E7F3 0%, rgba(241,231,243,0) 58%),
+    radial-gradient(820px 620px at 50% 106%, #FAEEE3 0%, rgba(250,238,227,0) 62%);
+}
+[hidden]{display:none !important}
+h1,h2,h3,p{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:6px}
+
+.wrap{width:100%;max-width:760px;margin:0 auto;padding:0 22px}
+.wrap-wide{max-width:860px}
+
+/* ============ 通用组件 ============ */
+.card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--r-l);
+  box-shadow:var(--shadow-s);
+}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border:none;cursor:pointer;border-radius:999px;
+  padding:15px 30px;font-size:16.5px;font-weight:600;letter-spacing:.02em;
+  transition:transform .18s ease, box-shadow .22s ease, background .22s ease, opacity .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn.primary{
+  background:linear-gradient(135deg,#E28C7C 0%, var(--rose) 45%, var(--rose-deep) 100%);
+  color:#fff;box-shadow:0 10px 24px -10px rgba(184,88,80,.62), 0 2px 4px rgba(184,88,80,.16);
+}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 16px 32px -12px rgba(184,88,80,.66)}
+.btn.primary:active{transform:translateY(0)}
+.btn.ghost{
+  background:#fff;color:var(--ink-2);border:1px solid var(--line);
+  box-shadow:0 1px 2px rgba(51,38,43,.04);
+}
+.btn.ghost:hover{background:var(--surface-2);color:var(--ink);transform:translateY(-1px)}
+.btn.ghost:disabled{opacity:.38;cursor:not-allowed;transform:none}
+.btn .arw{transition:transform .2s ease}
+.btn:hover .arw{transform:translateX(3px)}
+.btn.block{width:100%}
+.link{
+  background:none;border:none;padding:8px 2px;cursor:pointer;
+  color:var(--rose-deep);font-size:14.5px;font-weight:600;
+  border-bottom:1px solid rgba(184,88,80,.3);line-height:1.3;
+}
+.link:hover{color:var(--rose);border-bottom-color:var(--rose)}
+
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 13px;border-radius:999px;font-size:13px;font-weight:600;
+  background:var(--blush);color:var(--rose-deep);
+  border:1px solid rgba(217,122,108,.18);
+}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 15px 6px 11px;border-radius:999px;
+  background:rgba(255,255,255,.78);backdrop-filter:blur(6px);
+  border:1px solid var(--line);font-size:13px;font-weight:600;
+  color:var(--ink-2);letter-spacing:.03em;
+}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:var(--rose);box-shadow:0 0 0 4px rgba(217,122,108,.16)}
+
+/* ============ 顶部进度条 ============ */
+.top-progress{
+  position:fixed;top:0;left:0;right:0;height:3px;z-index:60;
+  background:rgba(51,38,43,.06);
+}
+.top-progress-fill{
+  height:100%;width:0;
+  background:linear-gradient(90deg,#E9A092,var(--rose),var(--rose-deep));
+  border-radius:0 3px 3px 0;
+  transition:width .38s cubic-bezier(.4,0,.2,1);
+}
+
+/* ============ 首页 ============ */
+.page{padding-bottom:64px}
+.hero{padding:52px 0 8px;text-align:center}
+.hero-art{width:min(340px,84%);margin:6px auto 4px;display:block}
+.hero h1{
+  font-size:clamp(28px,6.4vw,42px);line-height:1.28;font-weight:800;
+  letter-spacing:.01em;margin:14px 0 0;
+  background:linear-gradient(120deg,#4A343A 0%, #7E4E55 52%, #B85850 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .sub{
+  margin:16px auto 0;max-width:520px;color:var(--ink-2);
+  font-size:clamp(14.5px,3.5vw,16.5px);line-height:1.8;
+}
+.hero-meta{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:22px 0 0}
+.hero-cta{margin:30px 0 0;display:flex;flex-direction:column;align-items:center;gap:12px}
+.hero-cta .hint{font-size:13px;color:var(--ink-3)}
+
+/* 章节 */
+.sec-block{margin-top:44px}
+.sec-title{
+  display:flex;align-items:baseline;gap:12px;margin:0 0 18px;
+  font-size:19px;font-weight:700;letter-spacing:.01em;
+}
+.sec-title .idx{
+  font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--rose);
+  transform:translateY(-2px);
+}
+.sec-title::after{content:"";flex:1;height:1px;background:var(--line);transform:translateY(-5px)}
+
+/* 维度卡 */
+.dims{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.dim-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-m);
+  padding:20px 18px;box-shadow:var(--shadow-s);
+  transition:transform .2s ease, box-shadow .24s ease;
+}
+.dim-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-m)}
+.dim-ico{
+  width:42px;height:42px;border-radius:13px;display:grid;place-items:center;
+  background:var(--blush);color:var(--rose-deep);margin-bottom:13px;
+}
+.dim-card h3{font-size:16px;font-weight:700;margin-bottom:5px}
+.dim-card p{font-size:13.5px;color:var(--ink-2);line-height:1.72;margin:0}
+
+/* 说明卡 */
+.note-card{
+  padding:24px 24px 20px;border-radius:var(--r-m);
+  background:linear-gradient(150deg,var(--blush) 0%,#FFF9F5 62%);
+  border:1px solid rgba(217,122,108,.16);
+}
+.note-card h3{font-size:15.5px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.note-card ol,.note-card ul{margin:0;padding-left:20px}
+.note-card li{font-size:14px;color:var(--ink-2);line-height:1.85;margin-bottom:7px}
+.note-card li:last-child{margin-bottom:0}
+.note-card li b{color:var(--ink);font-weight:700}
+.note-card.plain{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-s);padding:26px 24px}
+.calc-list{list-style:none;padding:0;margin:0;counter-reset:c}
+.calc-list li{
+  counter-increment:c;position:relative;padding-left:34px;
+  font-size:14px;color:var(--ink-2);line-height:1.8;margin-bottom:11px;
+}
+.calc-list li::before{
+  content:counter(c);position:absolute;left:0;top:1px;
+  width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
+  background:var(--rose-soft);color:var(--rose-deep);font-size:11.5px;font-weight:700;
+}
+.calc-list li b{color:var(--ink);font-weight:700}
+.footer{
+  margin-top:52px;text-align:center;font-size:12.5px;color:var(--ink-3);
+  line-height:1.9;padding-bottom:8px;
+}
+
+/* ============ 答题页 ============ */
+#page-quiz{padding-bottom:0}
+.quiz-head{
+  position:sticky;top:0;z-index:40;
+  padding:18px 0 12px;
+  background:rgba(253,248,244,.86);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.quiz-head-row{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  font-size:13.5px;color:var(--ink-2);margin-bottom:10px;
+}
+.quiz-counter b{font-size:19px;font-weight:800;color:var(--ink);letter-spacing:.02em}
+.quiz-counter .of{color:var(--ink-3);font-weight:600}
+.dim-tag{
+  padding:4px 12px;border-radius:999px;font-size:12.5px;font-weight:700;
+  background:#fff;border:1px solid var(--line);color:var(--mauve);
+  white-space:nowrap;
+}
+.track{height:6px;border-radius:999px;background:rgba(51,38,43,.075);overflow:hidden}
+.track-fill{
+  height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,#EBA797,var(--rose),var(--rose-deep));
+  transition:width .45s cubic-bezier(.4,0,.2,1);
+}
+.dots{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:3px;margin-top:12px}
+.dot{
+  width:100%;height:26px;border-radius:8px;border:none;padding:0;cursor:pointer;
+  background:transparent;display:grid;place-items:center;
+  transition:background .2s ease;
+}
+.dot:hover{background:rgba(51,38,43,.045)}
+.dot i{
+  display:block;width:7px;height:7px;border-radius:50%;
+  background:rgba(51,38,43,.16);transition:all .2s ease;
+}
+.dot.done i{background:var(--rose);opacity:.55}
+.dot.cur i{width:11px;height:11px;background:var(--rose-deep);opacity:1;box-shadow:0 0 0 3px rgba(184,88,80,.16)}
+.dot:hover i{transform:scale(1.25)}
+
+.quiz-card{padding:26px 26px 24px;margin-bottom:20px}
+.q-index{font-size:12.5px;font-weight:700;letter-spacing:.16em;color:var(--rose);margin-bottom:10px}
+.q-text{font-size:clamp(18px,4.4vw,21px);font-weight:700;line-height:1.55;letter-spacing:.01em;margin-bottom:20px}
+.options{display:flex;flex-direction:column;gap:11px}
+.option{
+  display:flex;align-items:flex-start;gap:13px;width:100%;text-align:left;
+  padding:15px 17px;border-radius:16px;cursor:pointer;
+  background:var(--surface-2);border:1.5px solid var(--line);
+  transition:border-color .18s ease, background .18s ease, box-shadow .2s ease, transform .16s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.option:hover{border-color:var(--rose-soft);background:#fff;transform:translateY(-1px)}
+.option .radio{
+  flex:0 0 auto;width:21px;height:21px;border-radius:50%;margin-top:1px;
+  border:1.5px solid rgba(51,38,43,.22);display:grid;place-items:center;
+  transition:all .18s ease;background:#fff;
+}
+.option .radio::after{
+  content:"";width:9px;height:9px;border-radius:50%;background:#fff;
+  transform:scale(0);transition:transform .18s cubic-bezier(.34,1.56,.64,1);
+}
+.option .txt{font-size:15px;line-height:1.62;color:var(--ink-2);flex:1;padding-top:0}
+.option.selected{
+  border-color:var(--rose);background:linear-gradient(135deg,#FFF6F2 0%, #FDEDE7 100%);
+  box-shadow:0 0 0 4px rgba(217,122,108,.10);
+}
+.option.selected .radio{border-color:var(--rose);background:var(--rose)}
+.option.selected .radio::after{transform:scale(1)}
+.option.selected .txt{color:var(--ink);font-weight:600}
+.option.flash{animation:flash .4s ease}
+@keyframes flash{0%{box-shadow:0 0 0 0 rgba(217,122,108,.4)}100%{box-shadow:0 0 0 10px rgba(217,122,108,0)}}
+@keyframes shake{0%,100%{transform:translateX(0)}22%{transform:translateX(-6px)}44%{transform:translateX(6px)}66%{transform:translateX(-3px)}88%{transform:translateX(3px)}}
+.shake{animation:shake .42s ease}
+@keyframes qIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.q-anim{animation:qIn .34s cubic-bezier(.22,.8,.3,1) both}
+
+.quiz-nav{
+  position:sticky;bottom:0;z-index:40;
+  display:flex;gap:12px;padding:14px 0 calc(14px + env(safe-area-inset-bottom));
+  background:linear-gradient(to top, rgba(253,248,244,.97) 58%, rgba(253,248,244,0));
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+.quiz-nav .btn{flex:1;padding:15px 18px}
+.quiz-nav .btn.ghost{flex:0 0 34%;max-width:150px}
+.quiz-foot-note{
+  text-align:center;font-size:12.5px;color:var(--ink-3);padding:0 0 12px;
+}
+.quiz-foot-note b{color:var(--rose-deep)}
+
+/* ============ 结果页 ============ */
+#page-result{padding-top:40px}
+.result-hero{text-align:center;padding:8px 0 0}
+.emblem{
+  width:62px;height:62px;margin:0 auto 16px;border-radius:20px;
+  display:grid;place-items:center;
+  background:linear-gradient(140deg,var(--blush),#fff);
+  border:1px solid rgba(217,122,108,.2);
+  color:var(--rose-deep);box-shadow:0 12px 26px -18px rgba(184,88,80,.6);
+}
+.result-kicker{font-size:12.5px;font-weight:700;letter-spacing:.2em;color:var(--ink-3);margin-bottom:8px}
+.type-title{
+  font-size:clamp(27px,6.6vw,38px);font-weight:800;letter-spacing:.02em;line-height:1.3;
+  background:linear-gradient(120deg,#4A343A,#8A4F55 55%,var(--rose-deep));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.type-sub{margin-top:10px;font-size:15.5px;font-weight:700;color:var(--rose-deep)}
+.type-oneline{
+  margin:14px auto 0;max-width:560px;font-size:15px;color:var(--ink-2);line-height:1.85;
+}
+
+.score-card{padding:26px 24px;margin-top:28px}
+.score-grid{display:flex;align-items:center;gap:26px}
+.ring-wrap{position:relative;flex:0 0 auto;width:150px;height:150px}
+.ring{width:100%;height:100%;display:block}
+#ringFg{transition:stroke-dashoffset 1.3s cubic-bezier(.22,.8,.3,1)}
+.ring-center{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+}
+.ring-num{font-size:34px;font-weight:800;letter-spacing:-.01em;line-height:1;color:var(--ink)}
+.ring-unit{font-size:11.5px;color:var(--ink-3);margin-top:3px;letter-spacing:.08em}
+.ring-label{font-size:11.5px;color:var(--ink-2);margin-top:6px;font-weight:600}
+.radar-wrap{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center}
+.radar{width:100%;max-width:260px;height:auto;display:block}
+#radarGroup{transform-origin:130px 116px;transform:scale(.15);opacity:0;
+  transition:transform .9s cubic-bezier(.22,.9,.3,1) .2s, opacity .6s ease .2s}
+#radarGroup.in{transform:scale(1);opacity:1}
+
+.dim-list{margin-top:24px;border-top:1px solid var(--line-2);padding-top:20px;display:flex;flex-direction:column;gap:16px}
+.dim-row .dim-row-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:7px}
+.dim-row .nm{font-size:14.5px;font-weight:700;display:flex;align-items:center;gap:7px}
+.dim-row .nm span{font-size:11.5px;font-weight:600;color:var(--ink-3)}
+.dim-row .vl{font-size:13.5px;font-weight:700;color:var(--ink-2);white-space:nowrap}
+.dim-row .vl i{font-style:normal;font-size:11.5px;color:var(--ink-3);font-weight:600}
+.dim-bar{height:8px;border-radius:999px;background:rgba(51,38,43,.07);overflow:hidden}
+.dim-bar > i{
+  display:block;height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,#EBA797,var(--rose),var(--rose-deep));
+  transition:width 1s cubic-bezier(.22,.8,.3,1);
+}
+.dim-row .rd{font-size:13.5px;color:var(--ink-2);line-height:1.75;margin-top:7px}
+
+.sec{margin-top:22px;padding:26px 26px 24px}
+.sec h2{
+  font-size:17.5px;font-weight:700;margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec h2 .bar{width:4px;height:17px;border-radius:2px;background:linear-gradient(var(--rose),var(--rose-deep));flex:0 0 auto}
+.reasons{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:13px}
+.reasons li{position:relative;padding-left:22px;font-size:14.5px;color:var(--ink-2);line-height:1.85}
+.reasons li::before{
+  content:"";position:absolute;left:2px;top:11px;
+  width:7px;height:7px;border-radius:50%;background:var(--rose-soft);
+  box-shadow:0 0 0 3px rgba(217,122,108,.12);
+}
+.reasons li b{color:var(--ink);font-weight:700}
+
+.sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sig-col h4{
+  font-size:13px;font-weight:800;letter-spacing:.06em;margin:0 0 11px;
+  display:flex;align-items:center;gap:7px;
+}
+.sig-col h4 .pd{width:8px;height:8px;border-radius:50%}
+.sig-col.warm h4{color:var(--rose-deep)} .sig-col.warm h4 .pd{background:var(--rose)}
+.sig-col.hold h4{color:#8A6A2E} .sig-col.hold h4 .pd{background:var(--gold)}
+.sig-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
+.sig-col li{
+  font-size:13.5px;color:var(--ink-2);line-height:1.72;
+  padding:11px 13px;border-radius:12px;background:var(--surface-2);
+  border:1px solid var(--line-2);
+}
+.sig-col.warm li{background:#FFF7F4;border-color:rgba(217,122,108,.14)}
+.sig-col.hold li{background:#FFFBF0;border-color:rgba(199,154,94,.2)}
+
+.actions{display:flex;flex-direction:column;gap:12px}
+.action{
+  display:flex;gap:14px;padding:16px 18px;border-radius:16px;
+  background:linear-gradient(140deg,#FFF8F5,#fff);
+  border:1px solid var(--line-2);
+}
+.action .no{
+  flex:0 0 auto;width:26px;height:26px;border-radius:9px;display:grid;place-items:center;
+  background:var(--rose-soft);color:var(--rose-deep);font-size:13px;font-weight:800;
+}
+.action .bd{flex:1;min-width:0}
+.action .bd strong{display:block;font-size:14.5px;font-weight:700;margin-bottom:4px}
+.action .bd p{font-size:13.5px;color:var(--ink-2);line-height:1.78;margin:0}
+
+.warn{
+  padding:18px 20px;border-radius:16px;font-size:14px;line-height:1.82;
+  background:#FFFBF0;border:1px solid rgba(199,154,94,.26);color:#6E5730;
+}
+.warn.rose{background:#FFF6F3;border-color:rgba(217,122,108,.24);color:#7A4038}
+.warn b{font-weight:800}
+
+.answers-list{border-top:1px solid var(--line-2)}
+.ans-item{
+  display:flex;gap:12px;align-items:flex-start;
+  padding:14px 2px;border-bottom:1px solid var(--line-2);
+}
+.ans-item .n{
+  flex:0 0 auto;font-size:11.5px;font-weight:800;color:var(--rose);
+  background:var(--blush);border-radius:7px;padding:3px 7px;margin-top:2px;
+}
+.ans-item .q{font-size:13.5px;color:var(--ink);line-height:1.6;flex:1;min-width:0}
+.ans-item .q em{display:block;font-style:normal;color:var(--ink-2);font-size:13px;margin-top:3px}
+.ans-item .go{
+  flex:0 0 auto;background:none;border:1px solid var(--line);border-radius:8px;
+  padding:3px 9px;font-size:12px;color:var(--ink-2);cursor:pointer;margin-top:1px;
+  white-space:nowrap;
+}
+.ans-item .go:hover{border-color:var(--rose-soft);color:var(--rose-deep)}
+
+.result-cta{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+.result-cta .btn{flex:1;min-width:150px}
+.disclaimer{
+  margin-top:24px;font-size:12.5px;color:var(--ink-3);line-height:1.9;
+  padding:18px 20px;border-radius:16px;background:rgba(255,255,255,.6);
+  border:1px dashed var(--line);
+}
+.disclaimer b{color:var(--ink-2);font-weight:700}
+
+/* ============ Toast ============ */
+.toast{
+  position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));
+  transform:translate(-50%,16px);z-index:90;
+  padding:12px 22px;border-radius:999px;font-size:14px;font-weight:600;
+  background:rgba(51,38,43,.94);color:#FFF6F2;
+  box-shadow:0 16px 34px -16px rgba(51,38,43,.7);
+  opacity:0;pointer-events:none;transition:opacity .26s ease, transform .26s ease;
+  max-width:82vw;text-align:center;line-height:1.5;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ============ 响应式 ============ */
+@media (max-width:720px){
+  .wrap{padding:0 17px}
+  .dots{grid-template-columns:repeat(8,minmax(0,1fr));gap:2px;margin-top:10px}
+  .dot{height:32px}
+  .dot i{width:8px;height:8px}
+  .dot.cur i{width:12px;height:12px}
+  .dot.done i{background:var(--rose);opacity:.6}
+  .hero{padding-top:30px}
+  .dims{grid-template-columns:1fr}
+  .sig-grid{grid-template-columns:1fr;gap:18px}
+  .score-grid{flex-direction:column;gap:18px}
+  .ring-wrap{width:140px;height:140px}
+  .quiz-card{padding:22px 18px 20px}
+  .sec{padding:22px 18px 20px}
+  .score-card{padding:22px 18px}
+  .option{padding:14px 15px;gap:12px}
+  .option .txt{font-size:14.5px}
+  .quiz-nav .btn.ghost{flex:0 0 32%}
+  .result-cta .btn{flex:1 1 100%}
+  .toast{bottom:calc(104px + env(safe-area-inset-bottom))}
+}
+@media (max-width:380px){
+  .quiz-counter b{font-size:17px}
+  .dim-tag{font-size:12px;padding:3px 10px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+<div class="bg-layer"></div>
+<div class="top-progress" id="topProgress" hidden><div class="top-progress-fill" id="topProgressFill"></div></div>
+
+<!-- ===================== 首页 ===================== -->
+<section id="page-home" class="page">
+  <div class="wrap wrap-wide">
+    <div class="hero">
+      <div class="badge" style="margin:0 auto 8px;width:fit-content"><span class="dot"></span>暧昧期关系诊断 · 原创自评</div>
+
+      <svg class="hero-art" viewBox="0 0 340 210" role="img" aria-label="两个彼此靠近的人形插画">
+        <defs>
+          <linearGradient id="gA" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F0C4BC"/><stop offset="1" stop-color="#DE8E82"/>
+          </linearGradient>
+          <linearGradient id="gB" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#CBB3BF"/><stop offset="1" stop-color="#9C8290"/>
+          </linearGradient>
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#FBE7DF" stop-opacity="1"/>
+            <stop offset="1" stop-color="#FBE7DF" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="170" cy="112" rx="132" ry="92" fill="url(#glow)"/>
+        <ellipse cx="170" cy="185" rx="104" ry="14" fill="#F2E0D8" opacity=".75"/>
+        <!-- 左人 -->
+        <g>
+          <circle cx="106" cy="70" r="21" fill="url(#gA)"/>
+          <path d="M75 175c0-30 14-50 31-50s31 20 31 50z" fill="url(#gA)"/>
+        </g>
+        <!-- 右人 -->
+        <g>
+          <circle cx="234" cy="66" r="21" fill="url(#gB)"/>
+          <path d="M203 175c0-30 14-50 31-50s31 20 31 50z" fill="url(#gB)"/>
+        </g>
+        <!-- 连接虚线 -->
+        <path d="M128 56C148 30 192 30 212 54" fill="none" stroke="#D97A6C" stroke-width="2.4"
+              stroke-linecap="round" stroke-dasharray="1 9" opacity=".72"/>
+        <!-- 中间小心 -->
+        <path d="M170 44c-6-9-20-6-20 5 0 9 12 15 20 21 8-6 20-12 20-21 0-11-14-14-20-5z"
+              fill="#E2786A" opacity=".9"/>
+        <!-- 飘浮小点 -->
+        <circle cx="60" cy="118" r="4.5" fill="#EBC3BB" opacity=".9"/>
+        <circle cx="288" cy="124" r="3.6" fill="#D5C0CB" opacity=".9"/>
+        <circle cx="52" cy="58" r="3" fill="#E9B9AF" opacity=".75"/>
+        <circle cx="296" cy="46" r="4" fill="#CBB3BF" opacity=".7"/>
+        <path d="M40 150h14M47 143v14" stroke="#E7B4AA" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+        <path d="M304 152h12M310 146v12" stroke="#D3BCC7" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+      </svg>
+
+      <h1>他/她到底怎么想你？</h1>
+      <p class="sub">暧昧最难受的不是没有答案，而是信号太杂。<br>16 道题，用你真实相处里的细节，把这段关系的现状量出来。</p>
+
+      <div class="hero-meta">
+        <span class="chip">16 道题</span>
+        <span class="chip">约 3 分钟</span>
+        <span class="chip">4 个维度</span>
+        <span class="chip">6 种关系类型</span>
+      </div>
+
+      <div class="hero-cta">
+        <button class="btn primary" id="btnStart" style="padding:17px 46px;font-size:17px">开始测评 <span class="arw">&rarr;</span></button>
+        <span class="hint">凭第一反应作答，没有标准答案</span>
+      </div>
+    </div>
+
+    <!-- 维度 -->
+    <div class="sec-block">
+      <h2 class="sec-title"><span class="idx">01</span>这个测评在看什么</h2>
+      <div class="dims">
+        <div class="dim-card">
+          <div class="dim-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 7.8 4.1 4.1 0 0 1 19 10.6c0 5-7 9.4-7 9.4z"/></svg>
+          </div>
+          <h3>心意浓度</h3>
+          <p>他/她对你的关注度和兴趣强度：记不记得你的事，注意力是否偏向你。</p>
+        </div>
+        <div class="dim-card">
+          <div class="dim-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16.5 12 4l8 12.5"/><path d="M7.5 13.5h9"/></svg>
+          </div>
+          <h3>主动投入</h3>
+          <p>是否主动创造接触，愿不愿意付出真实成本：时间、精力、心思、安排。</p>
+        </div>
+        <div class="dim-card">
+          <div class="dim-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12.5c0 3.6-3.6 6.5-8 6.5a9.6 9.6 0 0 1-2.2-.25L5 21l1.1-3.4A6.8 6.8 0 0 1 4 12.5C4 8.9 7.6 6 12 6s8 2.9 8 6.5z"/><path d="M9 12.6l2.1 2 3.9-4"/></svg>
+          </div>
+          <h3>明确程度</h3>
+          <p>是否愿意把关系说清楚：对外怎么介绍你，给不给“以后”和排他的信号。</p>
+        </div>
+        <div class="dim-card">
+          <div class="dim-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14c2.2-6 4.4-6 6.6 0s4.4 6 6.6 0 4.4-6 6.6 0"/></svg>
+          </div>
+          <h3>相处稳定性</h3>
+          <p>热度是否稳定、言行是否一致：会不会忽冷忽热，说过的话能不能兑现。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 计分规则 -->
+    <div class="sec-block">
+      <h2 class="sec-title"><span class="idx">02</span>结果怎么算出来的</h2>
+      <div class="card note-card plain">
+        <ol class="calc-list">
+          <li><b>四个维度各 4 题</b>，共 16 题。每题有 4 个选项，按信号强度记 <b>0—3 分</b>，每个维度满分 12 分，全部满分 48 分。</li>
+          <li><b>先看相处稳定性。</b>如果这一项明显偏低（≤4 分），结果直接归入「忽冷忽热型」——不稳定的温度，比冷淡更需要先处理。</li>
+          <li><b>再看心意浓度。</b>如果兴趣信号很弱（≤5 分），归入「礼貌友好型」。</li>
+          <li><b>最后看明确程度与主动投入的组合</b>：明确度低且主动度低 →「犹豫观望型」；明确度低但主动度高 →「暧昧享受型」；两项都高 →「双向靠近型」；明确但不急 →「慢热考察型」。</li>
+          <li><b>结果完全由你的答案计算</b>，不随机、不掷骰子。同一份答案永远得到同一个结果；改答案，结果会跟着重新算。</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 开始前 -->
+    <div class="sec-block">
+      <h2 class="sec-title"><span class="idx">03</span>开始前想说的</h2>
+      <div class="card note-card">
+        <h3>📎 四个小提醒</h3>
+        <ul>
+          <li>请按 <b>最近 1—2 个月</b> 的真实情况作答，不要按“最甜蜜的那一次”。</li>
+          <li>没有标准答案，也不用挑“看起来好一点”的选项，不诚实的是自己。</li>
+          <li>这是一份 <b>原创自评工具</b>，用于帮你梳理关系现状，<b>不是心理诊断</b>，也不能替代专业心理咨询。</li>
+          <li>如果做完之后你很难受，请把感受放在结论前面——你的状态，永远比一个类型名重要。</li>
+        </ul>
+      </div>
+      <div style="text-align:center;margin-top:26px">
+        <button class="btn primary" id="btnStart2">开始测评 <span class="arw">&rarr;</span></button>
+      </div>
+    </div>
+
+    <div class="footer">
+      暧昧期关系诊断 · 单文件本地网页，不联网、不收集任何信息<br>
+      内容为原创自评设计，不构成心理诊断或专业建议
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 答题页 ===================== -->
+<section id="page-quiz" class="page" hidden>
+  <div class="wrap">
+    <div class="quiz-head">
+      <div class="quiz-head-row">
+        <span class="quiz-counter">第 <b id="qNow">1</b> <span class="of">/ 16 题</span></span>
+        <span class="dim-tag" id="qDim">心意浓度</span>
+      </div>
+      <div class="track"><div class="track-fill" id="trackFill"></div></div>
+      <div class="dots" id="dotsNav" role="tablist" aria-label="题目导航"></div>
+    </div>
+
+    <div class="card quiz-card" id="quizCard"></div>
+
+    <div class="quiz-foot-note" id="quizFoot"></div>
+
+    <div class="quiz-nav">
+      <button class="btn ghost" id="btnPrev">&larr; 上一题</button>
+      <button class="btn primary" id="btnNext">下一题 <span class="arw">&rarr;</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 结果页 ===================== -->
+<section id="page-result" class="page" hidden>
+  <div class="wrap">
+    <div class="result-hero">
+      <div class="emblem" id="typeEmblem"></div>
+      <div class="result-kicker">你 的 结 果</div>
+      <h1 class="type-title" id="typeTitle"></h1>
+      <p class="type-sub" id="typeSub"></p>
+      <p class="type-oneline" id="typeOneline"></p>
+    </div>
+
+    <div class="card score-card">
+      <div class="score-grid">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 140 140" class="ring" aria-hidden="true">
+            <circle cx="70" cy="70" r="58" fill="none" stroke="#F6DCD6" stroke-width="12"/>
+            <circle id="ringFg" cx="70" cy="70" r="58" fill="none" stroke="url(#ringGrad)" stroke-width="12"
+                    stroke-linecap="round" transform="rotate(-90 70 70)"
+                    stroke-dasharray="364.42" stroke-dashoffset="364.42"/>
+            <defs>
+              <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#EBA797"/><stop offset="1" stop-color="#B85850"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="ring-center">
+            <span class="ring-num" id="ringNum">0</span>
+            <span class="ring-unit">/ 100 分</span>
+            <span class="ring-label">关系温度指数</span>
+          </div>
+        </div>
+        <div class="radar-wrap">
+          <svg class="radar" viewBox="0 0 260 232" aria-label="四维度雷达图" role="img">
+            <g stroke="rgba(51,38,43,.10)" fill="none" stroke-width="1">
+              <polygon points="130,46 200,116 130,186 60,116"/>
+              <polygon points="130,69.3 176.7,116 130,162.7 83.3,116"/>
+              <polygon points="130,92.7 153.3,116 130,139.3 106.7,116"/>
+              <path d="M130 46V186M60 116H200" stroke="rgba(51,38,43,.07)"/>
+            </g>
+            <g id="radarGroup">
+              <polygon id="radarShape" points="130,116 130,116 130,116 130,116"
+                       fill="rgba(217,122,108,.20)" stroke="#D97A6C" stroke-width="2" stroke-linejoin="round"/>
+              <g id="radarPts" fill="#B85850"></g>
+            </g>
+            <g font-size="12" font-weight="600" fill="#6E5C62" font-family="inherit">
+              <text x="130" y="24" text-anchor="middle">心意</text>
+              <text x="196" y="120" text-anchor="start">主动</text>
+              <text x="130" y="212" text-anchor="middle">明确</text>
+              <text x="64" y="120" text-anchor="end">稳定</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="dim-list" id="dimList"></div>
+    </div>
+
+    <div class="card sec">
+      <h2><span class="bar"></span>为什么是这个结果</h2>
+      <ul class="reasons" id="reasonList"></ul>
+    </div>
+
+    <div class="card sec">
+      <h2><span class="bar"></span>值得留意的信号</h2>
+      <div class="sig-grid">
+        <div class="sig-col warm">
+          <h4><span class="pd"></span>在靠近的信号</h4>
+          <ul id="sigWarm"></ul>
+        </div>
+        <div class="sig-col hold">
+          <h4><span class="pd"></span>需要观察的信号</h4>
+          <ul id="sigHold"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card sec">
+      <h2><span class="bar"></span>接下来可以做的三件事</h2>
+      <div class="actions" id="actionList"></div>
+    </div>
+
+    <div class="card sec">
+      <h2><span class="bar"></span>尽量别踩的坑</h2>
+      <div class="warn" id="warnBox"></div>
+    </div>
+
+    <div class="card sec">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <h2 style="margin-bottom:0"><span class="bar"></span>我的作答（16 题）</h2>
+        <button class="link" id="btnToggleAns">展开查看</button>
+      </div>
+      <div class="answers-list" id="answersList" hidden style="margin-top:16px"></div>
+    </div>
+
+    <div class="result-cta">
+      <button class="btn ghost" id="btnRevise">返回修改答案</button>
+      <button class="btn ghost" id="btnCopy">复制结果摘要</button>
+      <button class="btn primary" id="btnRetest">重新测试</button>
+    </div>
+
+    <div class="disclaimer">
+      <b>关于这份测评：</b>本测评为原创自评工具，依据常见暧昧期互动模式设计，用于帮助你自己梳理关系现状。
+      它不构成心理诊断、也不是对他人心理状态的判定，不能替代专业心理咨询。
+      结果反映的是“你观察到的相处状况”，请以你自己的真实感受为准。
+    </div>
+
+    <div class="footer">
+      暧昧期关系诊断 · 单文件本地网页，不联网、不收集任何信息
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   1. 维度定义
+   ============================================================ */
+var DIMS = [
+  { key:'A', name:'心意浓度', short:'心意', full:'心意浓度' },
+  { key:'B', name:'主动投入', short:'主动', full:'主动投入' },
+  { key:'C', name:'明确程度', short:'明确', full:'明确程度' },
+  { key:'D', name:'相处稳定性', short:'稳定', full:'相处稳定性' }
+];
+var DIM_MAP = {};
+DIMS.forEach(function(d){ DIM_MAP[d.key] = d; });
+var MAX_DIM = 12, MAX_TOTAL = 48;
+
+/* 每个维度按分数段的解读 */
+var DIM_READING = {
+  A:[
+    [0,3,'对你的生活细节关注有限，兴趣信号偏弱，更像是普通相处。'],
+    [4,6,'属于正常朋友的关注度，偶尔会多出一点，但还不成体系。'],
+    [7,9,'有真实兴趣，只是还没到藏不住的程度。'],
+    [10,12,'细节记得很牢，注意力明显偏向你，这份在意不太容易装出来。']
+  ],
+  B:[
+    [0,3,'几乎没有主动投入，关系的节奏完全由你一个人维持。'],
+    [4,6,'推进主要靠你，对方会配合，但很少自己主导。'],
+    [7,9,'会主动，但更多是回应式的主动，需要你先迈一步。'],
+    [10,12,'主动且稳定，愿意为你花真实成本（时间、安排、心思）。']
+  ],
+  C:[
+    [0,3,'明显回避确认关系，也可能同时保留着其他选择。'],
+    [4,6,'对“定义关系”比较回避，态度偏模糊，习惯用玩笑带过。'],
+    [7,9,'有明确意愿，但表达上还留着余地，需要有人先开口。'],
+    [10,12,'愿意把话说清楚，也愿意为关系做调整，态度是站得住的。']
+  ],
+  D:[
+    [0,3,'温度由对方的需要决定，和关系进展无关，可预期性很低。'],
+    [4,6,'热度起伏较大，规律不明显，你容易反复复盘每条消息。'],
+    [7,9,'整体稳定，偶有波动，属于可以理解的正常起伏。'],
+    [10,12,'节奏稳定、言行一致，你能比较安心地预期下一次互动。']
+  ]
+};
+function dimReading(key, score){
+  var arr = DIM_READING[key];
+  for (var i=0;i<arr.length;i++){ if (score>=arr[i][0] && score<=arr[i][1]) return arr[i][2]; }
+  return arr[arr.length-1][2];
+}
+
+/* ============================================================
+   2. 题库：16 题，4 维度 × 4 题，选项分值 3/2/1/0
+   ============================================================ */
+var QUESTIONS = [
+  /* ---------- A 心意浓度 ---------- */
+  { dim:'A', text:'聊天时，对方回复你的状态通常是？', options:[
+    { t:'回得很快，还常常顺着话题开新的内容，不太需要你找话', s:3 },
+    { t:'一般会回，但话题基本靠你推动，你不接就停了', s:2 },
+    { t:'回复偏慢，不过内容算认真，不是敷衍', s:1 },
+    { t:'经常隔很久才回，或者只回“嗯”“哈哈”“好的”', s:0 }
+  ]},
+  { dim:'A', text:'你最近一次说自己状态不好（累、烦、生病），对方的反应是？', options:[
+    { t:'主动追问细节，过一阵还会再问一次恢复得怎么样', s:3 },
+    { t:'当天有安慰，之后就没再提过', s:2 },
+    { t:'回了“注意休息”这类比较客套的话', s:1 },
+    { t:'没特别回应，话题很快转回他/她自己身上', s:0 }
+  ]},
+  { dim:'A', text:'你们见面时，对方的注意力一般在哪儿？', options:[
+    { t:'大部分时间在你身上，连你随口说过的小事都记得', s:3 },
+    { t:'会认真聊天，但也会频繁看手机或顾别的事', s:2 },
+    { t:'话不多，需要你不停找话题把场子撑起来', s:1 },
+    { t:'更在意同一场合里的其他人', s:0 }
+  ]},
+  { dim:'A', text:'关于你的生活细节（口味、作息、朋友、喜好），对方记得多少？', options:[
+    { t:'记得很细，还会主动用上，比如点你爱吃的东西、避开你的雷区', s:3 },
+    { t:'记得一些明显的，比如你大概几点下班', s:2 },
+    { t:'大致知道一点，但常常需要你再讲一遍', s:1 },
+    { t:'几乎不记得，也几乎不主动问', s:0 }
+  ]},
+
+  /* ---------- B 主动投入 ---------- */
+  { dim:'B', text:'你们的联系，通常是谁先发起的？', options:[
+    { t:'对方主动居多，而且不只在有事的时候才出现', s:3 },
+    { t:'差不多一半一半，谁想到谁就发', s:2 },
+    { t:'大多是你先开口，对方负责回应', s:1 },
+    { t:'几乎都是你主动，你不发就没有消息', s:0 }
+  ]},
+  { dim:'B', text:'关于见面，通常是谁在推动？', options:[
+    { t:'对方经常主动约，并且会把时间地点定下来', s:3 },
+    { t:'你提出后，对方基本都会答应并赴约', s:2 },
+    { t:'你提了，对方常说“再看看”，最后容易没下文', s:1 },
+    { t:'一直没能见上面，或者总停在“下次一定”', s:0 }
+  ]},
+  { dim:'B', text:'对方有没有把你带进他/她的生活圈（朋友、家人、日常安排）？', options:[
+    { t:'主动提过想让你见见朋友，或者已经在做了', s:3 },
+    { t:'聊天里会提到自己的朋友和家人，但没提过见面', s:2 },
+    { t:'很少聊到他/她自己的生活圈', s:1 },
+    { t:'明显在避免让你接触到', s:0 }
+  ]},
+  { dim:'B', text:'对方为你付出过什么“成本”（时间、精力、心思）？', options:[
+    { t:'会为了你调整安排、专门跑一趟、提前准备小东西', s:3 },
+    { t:'偶尔有，但都是顺手就能做到的事', s:2 },
+    { t:'基本都是低成本互动，点赞、发表情包、转发内容', s:1 },
+    { t:'几乎没有为你多花过什么', s:0 }
+  ]},
+
+  /* ---------- C 明确程度 ---------- */
+  { dim:'C', text:'当你试探着提到“我们算什么关系”，对方的反应是？', options:[
+    { t:'会正面回应，也愿意把这件事聊清楚', s:3 },
+    { t:'会给一点态度，但话说得比较模糊，不落定', s:2 },
+    { t:'用玩笑、打岔或者“顺其自然”带过去', s:1 },
+    { t:'明显回避，甚至反过来问你为什么这么急', s:0 }
+  ]},
+  { dim:'C', text:'在别人面前，对方怎么介绍你？', options:[
+    { t:'会主动介绍，并且说清楚你们是什么关系', s:3 },
+    { t:'会介绍，但说法比较含糊，让人猜不透', s:2 },
+    { t:'一般只说“一个朋友”，不多解释', s:1 },
+    { t:'不介绍，或者尽量不让别人知道你', s:0 }
+  ]},
+  { dim:'C', text:'聊到“以后”（假期、旅行、几个月后的安排），对方的态度是？', options:[
+    { t:'会主动把你算进去，说“到时候一起去”', s:3 },
+    { t:'你提到时会答应，但自己不会主动提', s:2 },
+    { t:'很少聊到未来，话题一到这儿就断了', s:1 },
+    { t:'明确说过不喜欢计划，或者直接避开这个话题', s:0 }
+  ]},
+  { dim:'C', text:'关于“只和你这样相处”，对方给过信号吗？', options:[
+    { t:'明确表达过只想和你保持这种关系', s:3 },
+    { t:'有一些暗示，但没有说清楚', s:2 },
+    { t:'完全没提过这个方向的话题', s:1 },
+    { t:'同时和好几个人维持着类似的关系', s:0 }
+  ]},
+
+  /* ---------- D 相处稳定性 ---------- */
+  { dim:'D', text:'对方的热情会随着什么变化？', options:[
+    { t:'比较稳定，即使忙也会提前说一声', s:3 },
+    { t:'平时稳定，偶尔因为心情或工作起伏一下', s:2 },
+    { t:'明显忽冷忽热，找不到规律', s:1 },
+    { t:'有需要时才热络，比如无聊了、深夜了', s:0 }
+  ]},
+  { dim:'D', text:'对方说过的话，兑现情况如何？', options:[
+    { t:'说过的基本都会做到，不用你催', s:3 },
+    { t:'大部分会做到，偶尔忘掉一两次', s:2 },
+    { t:'常常说得好听，真正落地的不多', s:1 },
+    { t:'承诺基本没兑现过', s:0 }
+  ]},
+  { dim:'D', text:'在这段关系里，你们分享自己的程度对等吗？', options:[
+    { t:'基本对等，双方都愿意讲自己的事，包括不太好的部分', s:3 },
+    { t:'你更愿意说，对方也会回应，只是很少主动展开', s:2 },
+    { t:'大多是你问、对方答，很少反过来', s:1 },
+    { t:'你对对方的生活了解很少，而且说不清为什么', s:0 }
+  ]},
+  { dim:'D', text:'白天和深夜的互动，差别大吗？', options:[
+    { t:'差别不大，白天也会自然联系，不只是夜里', s:3 },
+    { t:'主要在晚上聊，白天偶尔冒个泡', s:2 },
+    { t:'基本只在深夜或某些固定时间出现', s:1 },
+    { t:'只在对方需要的时候才出现', s:0 }
+  ]}
+];
+
+/* ============================================================
+   3. 六种结果类型
+   ============================================================ */
+var TYPES = {
+  mutual:{
+    name:'双向靠近型', sub:'温度在升，只差一个确认',
+    oneline:'你们之间已经不是“有没有”的问题，而是“什么时候说”的问题。',
+    reasons:[
+      '三个关键项都不低：对方在<b>主动创造接触</b>，也愿意把心意花在细节上，说明这不是你单方面的解读。',
+      '明确程度也在中上，意味着对方并不回避“关系”这个词，只是可能同样在等你先开口。',
+      '稳定性同时达标，说明这份温度不是一时兴起，不会今天热明天冷。'
+    ],
+    warm:['主动是双向的，不会因为你不发消息就彻底安静','愿意在你面前讲真实的处境，包括不安和压力','聊到以后会有具体内容，而不只是“有机会再说”','说过的小事基本都会做到'],
+    hold:['两个人都在等对方先确认，容易把暧昧期拖长','确认之后需要重新调整相处节奏，可能有一段磨合'],
+    actions:[
+      { t:'把态度直接说出口', d:'选一个两人都放松、没有外人的场景，不用铺垫太多：“我喜欢现在这样，也想把它变成正式的关系。”说完停住，把空间留给对方。' },
+      { t:'把“确认关系”拆成具体问题', d:'别只问“我们算什么”。换成：怎么相处、多久见一次、对外怎么说。具体的问题才容易拿到具体的答案。' },
+      { t:'确认后主动做一件“升级”的事', d:'把对方介绍给一个对你重要的人，或者一起规划一次短途出行。关系的推进需要仪式感来落地。' }
+    ],
+    warn:'别为了维持“安全”继续拖。暧昧的甜蜜期是有保质期的，拖久了，热度会变成习惯，习惯会被生活冲散。'
+  },
+  slow:{
+    name:'慢热考察型', sub:'认真，但节奏很慢',
+    oneline:'他/她在用自己习惯的速度，确认你是不是那个人。',
+    reasons:[
+      '明确程度不低，说明对方<b>并不排斥关系本身</b>，只是推进的方式偏保守。',
+      '但主动投入偏低：不是不在意，而是把“开始”看得很重，不愿轻易迈出第一步。',
+      '稳定性达标是关键信号——这段关系在慢慢升温，只是需要用“月”而不是用“天”来量。'
+    ],
+    warm:['关系在缓慢但持续地升温，没有倒退','会认真回答你的问题，只是自己不常主动提','尊重你的边界，也不拿忽冷忽热来试探你','说出来的事会做到，可靠性比速度高'],
+    hold:['推进节奏主要由对方决定，你的等待可能没有明确期限','“慢热”和“不想”外表很像，需要用时间分开验证'],
+    actions:[
+      { t:'接受节奏差异，但把需求说清楚', d:'直接告诉对方你需要什么：“我希望我们至少一周能认真聊一次。”需求说出来才可能被满足，憋着只会变成怨气。' },
+      { t:'看方向，不看速度', d:'别盯着“今天有没有秒回”。更值得看的是：这一周有没有比上一周更靠近一点。方向对了，慢一点没关系。' },
+      { t:'给自己设一个判断点', d:'比如三个月。到期还停在原地，就把“慢热”和“不想”分开判断——前者会移动，后者不会。' }
+    ],
+    warn:'不要用“他/她就是这样的人”一直说服自己。尊重对方的节奏，不等于取消自己的标准。'
+  },
+  enjoy:{
+    name:'暧昧享受型', sub:'喜欢现在的氛围，但不太想定义它',
+    oneline:'热度够，主动也够，唯独“说清楚”这件事一直被绕开。',
+    reasons:[
+      '对方确实享受和你相处的状态：主动联系、花心思、愿意陪你，这些不太可能是装的。',
+      '但每当话题接近“我们是什么”，就会被玩笑、打岔或者“顺其自然”接住——因为定义意味着责任和排他。',
+      '这是最容易让人沉进去的一类：愉快的体验会不断给你“再等等就好了”的错觉。'
+    ],
+    warm:['互动频率和投入都真实存在，不是冷淡型选手','愿意为你付出时间，也享受你的陪伴','关系里明显有温度，只是停在这里'],
+    hold:['高频互动 + 零个明确承诺，这个组合本身就是答案的一部分','谈感受可以，谈定义就模糊','你提出边界或疑问时，对方的反应是安抚，而不是改变'],
+    actions:[
+      { t:'先想清楚自己要什么', d:'拿纸写下来：要一段正式关系 / 现在这样就很好 / 需要再观察。三个答案对应三种做法，先别急着找对方要答案。' },
+      { t:'给一次“清晰的确认机会”', d:'说清楚你的期望，然后听对方怎么回答具体问题：时间、方式、排他。含糊的回应也算回应，看的是内容不是态度。' },
+      { t:'按自己的需要决定去留', d:'如果对方依然绕开，请接受“这就是答案”。你可以留，但要清楚地留，而不是抱着“再等等会变好”的期待留。' }
+    ],
+    warn:'不要用“他/她对我这么好”去抵消“他/她不肯说清楚”。这两件事可以同时成立，而且常常正是问题所在。'
+  },
+  hesitate:{
+    name:'犹豫观望型', sub:'有好感，但还没决定要不要开始',
+    oneline:'他/她对你有兴趣，只是还没准备好把这份兴趣变成行动。',
+    reasons:[
+      '心意浓度和稳定性都过关：会记得你的事，也愿意花时间，温度是稳定的而不是假热。',
+      '但主动投入和明确程度都偏低，说明推进的力气不足，常常停在“再等等”的位置。',
+      '犹豫的原因通常和你无关：可能刚结束一段关系、正被现实压力占用精力，或者本身就是谨慎型的人。'
+    ],
+    warm:['你靠近时对方不退，说明并非没有意愿','聊感受的时候是真诚的，愿意说自己的事','温度稳定，不会拿忽冷忽热消耗你'],
+    hold:['你等的时候，对方也不会主动往前','聊感受可以，聊定义就变模糊','独处时温度高，对外时温度低'],
+    actions:[
+      { t:'给这段关系设一个明确的时间窗', d:'比如 3—4 周。在窗口内正常相处、正常回应，但不要过度解读每个细节，也不要加倍投入。' },
+      { t:'窗口结束时，安排一次直接的对话', d:'用“我”开头表达，不给对方压力也不留模糊空间：“我挺喜欢和你相处的，我想知道你怎么想。”' },
+      { t:'把回应质量当成答案', d:'愿意谈就是愿意谈，转移话题也是一种回答。你需要的不是他/她说得多好听，而是有没有具体动作跟上。' }
+    ],
+    warn:'不要用无限期的等待去证明自己的真心。真心不需要考勤，也不会因为等得久就自动被看见。'
+  },
+  friendly:{
+    name:'礼貌友好型', sub:'温度是真的，但浓度不高',
+    oneline:'对方是友善的，只是目前没有超出朋友的指向。',
+    reasons:[
+      '对方待你不错，但这份“不错”更像一个人的基本教养和相处方式，而不是专门为你准备的。',
+      '关键区别在“细节记忆”与“主动创造接触”：这两样在真正的兴趣里藏不住，而在这里基本看不到。',
+      '你感受到的心动，很大一部分可能来自你自己投入进去的情绪——这很正常，但需要看清楚。'
+    ],
+    warm:['聊天氛围是轻松的，对方没有恶意，也没有故意吊着你','对方在相处里有基本的尊重，不会用忽冷忽热来拿捏你','这段关系里没有欺骗和消耗，只是止步在了朋友的位置'],
+    hold:['你主动时对方配合，你不主动关系也不会变淡——因为它本来就在原地','聊得开心，但几乎不触及彼此生活的深处','没有排他信号，也没有任何具体的“以后”','投入基本停留在低成本互动'],
+    actions:[
+      { t:'做一次低成本的确定性试探', d:'提出一个具体的、需要对方付出一点时间的邀约，明确时间和地点。看回应的质量，而不是看态度的好坏。' },
+      { t:'把主动频率降一半，观察两周', d:'这能帮你分清：这段关系是真的有热度，还是只有你一个人在加温。' },
+      { t:'如果两周内没有任何反向靠近，就把关系稳稳放回朋友位', d:'不解释、不逼问、不赌气。你的喜欢很珍贵，值得给那些会回应的人。' }
+    ],
+    warn:'不要把“不拒绝”当成“默许”。对方只是没有说不，这不等于在等你更进一步。'
+  },
+  hotcold:{
+    name:'忽冷忽热型', sub:'温度不稳定，而且不由你决定',
+    oneline:'不是没有温度，而是这份温度什么时候来，你说了不算。',
+    reasons:[
+      '你感受到的忽冷忽热是真实的，不是你想太多。这类关系里，对方的投入更多由他/她自己的状态和需要决定，而不是由你们关系的进展决定。',
+      '热情出现的时机往往很集中：深夜、无聊时、需要情绪出口时；而在需要他/她付出时间、承担责任的时候，温度会明显下降。',
+      '真正消耗人的不是“冷”，而是“不可预测”。长期处在这种节奏里，人会不由自主地开始过度解读每一条消息。'
+    ],
+    warm:['对方并非完全没有在意，那些热络的时刻是真实存在的','在他/她状态好的时候，你能感受到明确的好感和亲近','有些时候对方确实愿意为你花时间，只是这件事没有规律'],
+    hold:['承诺兑现度低，说得多、做得少','主要在你最不方便拒绝的时间出现','你想确认关系时，话题会被转移','热情有规律可循，但规律是“对方的需要”，不是你们的相处'],
+    actions:[
+      { t:'把观察周期拉长到一个月，只记事实', d:'记录：谁先联系、约成几次、兑现几件事。不记录情绪、不记录猜测。一个月后回头看，答案通常很清楚。' },
+      { t:'刻意少发一次“忍不住的消息”', d:'看看对方会不会主动补位。这一步是在测投入，不是在赌气，所以不要发朋友圈暗示，也不要冷脸。' },
+      { t:'给自己设一条底线', d:'例如：两周内没有任何实质推进，就把这段关系放回朋友的位置，不解释、不逼问。' }
+    ],
+    warn:'不要用“我是不是不够好”来解释对方的温度变化。也不要用加大投入去换回应——那只会让对方的成本更低，你的位置更被动。'
+  }
+};
+
+/* 类型决策：完全确定，无随机 */
+function decideType(s){
+  if (s.D <= 4) return 'hotcold';
+  if (s.A <= 5) return 'friendly';
+  if (s.C <= 5 && s.B <= 7) return 'hesitate';
+  if (s.C <= 5 && s.B >= 8) return 'enjoy';
+  if (s.B >= 9) return 'mutual';
+  return 'slow';
+}
+
+/* 类型徽章图形（原创线条图形） */
+var EMBLEMS = {
+  mutual:'<svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="16" cy="20" r="8.5"/><circle cx="24" cy="20" r="8.5"/></svg>',
+  slow:'<svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="20" cy="20" r="12.5"/><path d="M20 12.5V20l5.5 4"/></svg>',
+  enjoy:'<svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="18" cy="18" r="11.5"/><circle cx="13.8" cy="13.6" r="2.3" fill="currentColor" stroke="none"/><circle cx="31.5" cy="30.5" r="3.4"/></svg>',
+  hesitate:'<svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="20" cy="20" r="12.5"/><path d="M16 16.2a4.2 4.2 0 1 1 5.6 4c-1 .5-1.6 1.1-1.6 2.2"/><path d="M20 26.4v.4"/></svg>',
+  friendly:'<svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="20" cy="20" r="12.5"/><circle cx="15.8" cy="17" r="1.15" fill="currentColor" stroke="none"/><circle cx="24.2" cy="17" r="1.15" fill="currentColor" stroke="none"/><path d="M14.8 23c1.7 2.4 8.7 2.4 10.4 0"/></svg>',
+  hotcold:'<svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 20c3.2-6.5 6.4-6.5 9.6 0s6.4 6.5 9.6 0S30.6 13.5 34 20"/><path d="M5 28h30" opacity=".34"/></svg>'
+};
+
+/* ============================================================
+   4. 运行状态与 DOM 引用
+   ============================================================ */
+var TOTAL = QUESTIONS.length;
+var answers = new Array(TOTAL).fill(null);
+var currentQ = 0;
+var advanceTimer = null;
+var toastTimer = null;
+var scores = null;
+var resultType = null;
+
+function $(id){ return document.getElementById(id); }
+
+var elHome = $('page-home'), elQuiz = $('page-quiz'), elResult = $('page-result');
+var topProgress = $('topProgress'), topProgressFill = $('topProgressFill');
+var qNow = $('qNow'), qDim = $('qDim'), trackFill = $('trackFill'), dotsNav = $('dotsNav');
+var quizCard = $('quizCard'), quizFoot = $('quizFoot');
+var btnPrev = $('btnPrev'), btnNext = $('btnNext');
+var toastEl = $('toast');
+
+/* ============================================================
+   5. 基础工具
+   ============================================================ */
+function showToast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2200);
+}
+
+function showPage(name){
+  elHome.hidden = (name !== 'home');
+  elQuiz.hidden = (name !== 'quiz');
+  elResult.hidden = (name !== 'result');
+  topProgress.hidden = (name !== 'quiz');
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+
+function answeredCount(){
+  var n = 0;
+  for (var i=0;i<TOTAL;i++){ if (answers[i] !== null) n++; }
+  return n;
+}
+function firstUnanswered(){
+  for (var i=0;i<TOTAL;i++){ if (answers[i] === null) return i; }
+  return -1;
+}
+
+/* ============================================================
+   6. 答题页
+   ============================================================ */
+function renderDots(){
+  var html = '';
+  for (var i=0;i<TOTAL;i++){
+    var cls = 'dot';
+    if (answers[i] !== null) cls += ' done';
+    if (i === currentQ) cls += ' cur';
+    html += '<button type="button" class="'+cls+'" data-i="'+i+'" aria-label="第 '+(i+1)+' 题" title="第 '+(i+1)+' 题"><i></i></button>';
+  }
+  dotsNav.innerHTML = html;
+}
+
+function renderQuiz(index, animate){
+  currentQ = index;
+  var q = QUESTIONS[index];
+  var dim = DIM_MAP[q.dim];
+
+  qNow.textContent = String(index + 1);
+  qDim.textContent = dim.name;
+  dotsNav.querySelectorAll('.dot').forEach(function(d){
+    d.classList.toggle('cur', Number(d.dataset.i) === index);
+  });
+
+  var pct = Math.round((index) / TOTAL * 100);
+  trackFill.style.width = pct + '%';
+  topProgressFill.style.width = pct + '%';
+
+  var opts = '';
+  for (var i=0;i<q.options.length;i++){
+    var sel = (answers[index] === i) ? ' selected' : '';
+    opts += '<button type="button" class="option'+sel+'" data-o="'+i+'">'
+          +   '<span class="radio"></span>'
+          +   '<span class="txt">'+q.options[i].t+'</span>'
+          + '</button>';
+  }
+
+  quizCard.innerHTML =
+      '<div class="q-index">Q'+(index+1)+' · '+dim.name+'</div>'
+    + '<h2 class="q-text">'+q.text+'</h2>'
+    + '<div class="options">'+opts+'</div>';
+
+  if (animate !== false){
+    quizCard.classList.remove('q-anim');
+    void quizCard.offsetWidth;
+    quizCard.classList.add('q-anim');
+  }
+
+  updateNav();
+}
+
+function updateNav(){
+  var left = TOTAL - answeredCount();
+  btnPrev.disabled = (currentQ === 0);
+  if (currentQ === TOTAL - 1){
+    btnNext.innerHTML = '查看结果 <span class="arw">&rarr;</span>';
+  } else {
+    btnNext.innerHTML = '下一题 <span class="arw">&rarr;</span>';
+  }
+  if (left > 0){
+    quizFoot.innerHTML = '还有 <b>'+left+'</b> 题未作答';
+  } else {
+    quizFoot.innerHTML = '16 题已全部作答 · <button type="button" class="link" id="footGo">直接查看结果</button>';
+  }
+}
+
+quizFoot.addEventListener('click', function(e){
+  var btn = e.target.closest ? e.target.closest('#footGo') : null;
+  if (btn) renderResult();
+});
+
+function goTo(i, animate){
+  if (i < 0 || i >= TOTAL) return;
+  clearTimeout(advanceTimer);
+  advanceTimer = null;
+  renderQuiz(i, animate);
+  renderDots();
+}
+
+function selectOption(index, oIndex){
+  var isNew = (answers[index] === null);
+  answers[index] = oIndex;
+  clearTimeout(advanceTimer);
+
+  var opts = quizCard.querySelectorAll('.option');
+  for (var i=0;i<opts.length;i++){
+    opts[i].classList.toggle('selected', i === oIndex);
+  }
+  if (opts[oIndex]) opts[oIndex].classList.add('flash');
+
+  updateNav();
+  renderDots();
+
+  /* 首次作答时自动前进；回来修改时不跳走 */
+  if (isNew && index < TOTAL - 1){
+    var snapshot = index;
+    var choice = oIndex;
+    advanceTimer = setTimeout(function(){
+      if (currentQ === snapshot && answers[snapshot] === choice){ goTo(snapshot + 1, true); }
+    }, 280);
+  }
+}
+
+quizCard.addEventListener('click', function(e){
+  var btn = e.target.closest ? e.target.closest('.option') : null;
+  if (!btn) return;
+  selectOption(currentQ, Number(btn.dataset.o));
+});
+
+dotsNav.addEventListener('click', function(e){
+  var btn = e.target.closest ? e.target.closest('.dot') : null;
+  if (!btn) return;
+  goTo(Number(btn.dataset.i), true);
+});
+
+btnPrev.addEventListener('click', function(){
+  if (currentQ === 0) return;
+  goTo(currentQ - 1, true);
+});
+
+btnNext.addEventListener('click', function(){
+  if (answers[currentQ] === null){
+    quizCard.classList.remove('shake');
+    void quizCard.offsetWidth;
+    quizCard.classList.add('shake');
+    showToast('先选一个最接近你现在感受的答案');
+    return;
+  }
+  if (currentQ < TOTAL - 1){ goTo(currentQ + 1, true); return; }
+  var miss = firstUnanswered();
+  if (miss !== -1){
+    showToast('还有第 ' + (miss + 1) + ' 题没有作答');
+    goTo(miss, true);
+    return;
+  }
+  renderResult();
+});
+
+/* ============================================================
+   7. 计分与结果
+   ============================================================ */
+function computeScores(){
+  var s = { A:0, B:0, C:0, D:0 };
+  for (var i=0;i<TOTAL;i++){
+    var oIndex = answers[i];
+    if (oIndex === null) continue;
+    s[QUESTIONS[i].dim] += QUESTIONS[i].options[oIndex].s;
+  }
+  var total = s.A + s.B + s.C + s.D;
+  s.total = total;
+  s.index = Math.round(total / MAX_TOTAL * 100);
+  return s;
+}
+
+function renderResult(){
+  scores = computeScores();
+  var key = decideType(scores);
+  resultType = TYPES[key];
+  var T = resultType;
+
+  showPage('result');
+
+  /* 头部 */
+  $('typeEmblem').innerHTML = EMBLEMS[key] || EMBLEMS.mutual;
+  $('typeTitle').textContent = T.name;
+  $('typeSub').textContent = T.sub;
+  $('typeOneline').textContent = T.oneline;
+
+  /* 指数环 */
+  var C = 2 * Math.PI * 58;
+  var fg = $('ringFg');
+  fg.style.strokeDashoffset = String(C);
+  var numEl = $('ringNum');
+  var target = scores.index;
+  var t0 = null;
+  function step(ts){
+    if (t0 === null) t0 = ts;
+    var p = Math.min((ts - t0) / 1300, 1);
+    var eased = 1 - Math.pow(1 - p, 3);
+    numEl.textContent = String(Math.round(target * eased));
+    if (p < 1) requestAnimationFrame(step);
+    else numEl.textContent = String(target);
+  }
+  requestAnimationFrame(function(){
+    fg.style.strokeDashoffset = String(C * (1 - target / 100));
+    requestAnimationFrame(step);
+  });
+
+  /* 雷达图 */
+  var CX = 130, CY = 116, R = 70;
+  var dirs = [ [0,-1], [1,0], [0,1], [-1,0] ];  /* A上 B右 C下 D左 */
+  var keys = ['A','B','C','D'];
+  var pts = [], dots = '';
+  for (var i=0;i<4;i++){
+    var v = scores[keys[i]] / MAX_DIM;
+    var x = CX + dirs[i][0] * R * v;
+    var y = CY + dirs[i][1] * R * v;
+    pts.push(x.toFixed(1) + ',' + y.toFixed(1));
+    dots += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="3.4"/>';
+  }
+  $('radarShape').setAttribute('points', pts.join(' '));
+  $('radarPts').innerHTML = dots;
+  var rg = $('radarGroup');
+  rg.classList.remove('in');
+  void rg.getBoundingClientRect();
+  requestAnimationFrame(function(){ rg.classList.add('in'); });
+
+  /* 维度明细 */
+  var dl = '';
+  for (var k=0;k<4;k++){
+    var kk = keys[k];
+    var d = DIM_MAP[kk];
+    var sc = scores[kk];
+    var w = Math.round(sc / MAX_DIM * 100);
+    dl += '<div class="dim-row">'
+        +   '<div class="dim-row-top">'
+        +     '<span class="nm">' + d.name + ' <span>' + d.short + '维度</span></span>'
+        +     '<span class="vl">' + sc + ' <i>/ 12</i></span>'
+        +   '</div>'
+        +   '<div class="dim-bar"><i data-w="' + w + '"></i></div>'
+        +   '<p class="rd">' + dimReading(kk, sc) + '</p>'
+        + '</div>';
+  }
+  $('dimList').innerHTML = dl;
+  requestAnimationFrame(function(){
+    $('dimList').querySelectorAll('.dim-bar > i').forEach(function(bar){
+      bar.style.width = bar.dataset.w + '%';
+    });
+  });
+
+  /* 解释 */
+  var rl = '';
+  for (var r=0;r<T.reasons.length;r++){ rl += '<li>' + T.reasons[r] + '</li>'; }
+  $('reasonList').innerHTML = rl;
+
+  /* 信号 */
+  var sw = '', sh = '';
+  for (var a=0;a<T.warm.length;a++){ sw += '<li>' + T.warm[a] + '</li>'; }
+  for (var b=0;b<T.hold.length;b++){ sh += '<li>' + T.hold[b] + '</li>'; }
+  $('sigWarm').innerHTML = sw;
+  $('sigHold').innerHTML = sh;
+
+  /* 行动 */
+  var ac = '';
+  for (var c=0;c<T.actions.length;c++){
+    ac += '<div class="action">'
+        +   '<span class="no">' + (c+1) + '</span>'
+        +   '<div class="bd"><strong>' + T.actions[c].t + '</strong><p>' + T.actions[c].d + '</p></div>'
+        + '</div>';
+  }
+  $('actionList').innerHTML = ac;
+
+  /* 提醒 */
+  $('warnBox').innerHTML = '<b>雷区提醒：</b>' + T.warn;
+
+  /* 作答回顾 */
+  renderAnswersList();
+  $('answersList').hidden = true;
+  $('btnToggleAns').textContent = '展开查看';
+}
+
+function renderAnswersList(){
+  var html = '';
+  for (var i=0;i<TOTAL;i++){
+    var q = QUESTIONS[i];
+    var oIndex = answers[i];
+    var val = (oIndex === null) ? '未作答' : q.options[oIndex].t;
+    var sc = (oIndex === null) ? '—' : (q.options[oIndex].s + ' 分');
+    html += '<div class="ans-item">'
+        +   '<span class="n">Q' + (i+1) + '</span>'
+        +   '<span class="q">' + q.text + '<em>' + DIM_MAP[q.dim].name + ' · ' + sc + '　' + val + '</em></span>'
+        +   '<button type="button" class="go" data-i="' + i + '">修改</button>'
+        + '</div>';
+  }
+  $('answersList').innerHTML = html;
+}
+
+$('answersList').addEventListener('click', function(e){
+  var btn = e.target.closest ? e.target.closest('.go') : null;
+  if (!btn) return;
+  showPage('quiz');
+  goTo(Number(btn.dataset.i), true);
+});
+
+$('btnToggleAns').addEventListener('click', function(){
+  var list = $('answersList');
+  var open = list.hidden;
+  list.hidden = !open;
+  this.textContent = open ? '收起' : '展开查看';
+});
+
+/* 复制摘要 */
+function buildSummary(){
+  var lines = [];
+  lines.push('【暧昧期关系诊断 · 我的结果】');
+  lines.push('类型：' + resultType.name + '｜' + resultType.sub);
+  lines.push(resultType.oneline);
+  lines.push('关系温度指数：' + scores.index + ' / 100');
+  lines.push('');
+  lines.push('四维度得分（满分 12）：');
+  ['A','B','C','D'].forEach(function(k){
+    lines.push('· ' + DIM_MAP[k].name + '：' + scores[k] + ' 分 — ' + dimReading(k, scores[k]));
+  });
+  lines.push('');
+  lines.push('接下来可以做的三件事：');
+  resultType.actions.forEach(function(a, i){ lines.push((i+1) + '. ' + a.t + '：' + a.d); });
+  lines.push('');
+  lines.push('雷区提醒：' + resultType.warn);
+  lines.push('');
+  lines.push('（本测评为原创自评工具，不构成心理诊断或专业建议）');
+  return lines.join('\n');
+}
+
+$('btnCopy').addEventListener('click', function(){
+  var text = buildSummary();
+  var done = function(){ showToast('结果摘要已复制到剪贴板'); };
+  var fail = function(){
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      ok ? done() : showToast('复制失败，请长按页面手动选择文本');
+    } catch (err){
+      showToast('复制失败，请长按页面手动选择文本');
+    }
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done, fail);
+  } else {
+    fail();
+  }
+});
+
+/* ============================================================
+   8. 流程控制
+   ============================================================ */
+function startQuiz(fresh){
+  if (fresh){
+    answers = new Array(TOTAL).fill(null);
+    scores = null;
+    resultType = null;
+  }
+  showPage('quiz');
+  goTo(0, false);
+}
+
+$('btnStart').addEventListener('click', function(){ startQuiz(true); });
+$('btnStart2').addEventListener('click', function(){ startQuiz(true); });
+
+$('btnRetest').addEventListener('click', function(){ startQuiz(true); });
+
+$('btnRevise').addEventListener('click', function(){
+  showPage('quiz');
+  goTo(0, false);
+  showToast('已回到第 1 题，改完后点最后一题的“查看结果”重新计算');
+});
+
+/* 键盘操作：1-4 选项，← → 翻页 */
+document.addEventListener('keydown', function(e){
+  if (elQuiz.hidden) return;
+  if (e.key === 'ArrowLeft'){ if (currentQ > 0) goTo(currentQ - 1, true); return; }
+  if (e.key === 'ArrowRight'){ btnNext.click(); return; }
+  var n = parseInt(e.key, 10);
+  if (n >= 1 && n <= 4){
+    var opts = quizCard.querySelectorAll('.option');
+    if (opts[n-1]) selectOption(currentQ, n-1);
+  }
+});
+
+/* 初始化 */
+renderDots();
+updateNav();
+})();
+</script>
+</body>
+</html>
