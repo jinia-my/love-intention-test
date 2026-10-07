@@ -413,6 +413,36 @@ button{font:inherit;color:inherit}
 }
 .disclaimer b{color:var(--ink-2);font-weight:700}
 
+/* ============ 引流卡（小红书店铺） ============ */
+.contact-card{background:linear-gradient(140deg,#FFF8F5 0%,var(--surface) 62%)}
+.contact-card h2{font-size:16.5px;line-height:1.62;align-items:flex-start}
+.contact-card h2 .bar{margin-top:3px}
+.contact-lead{font-size:15px;color:var(--ink-2);line-height:1.92;margin-bottom:18px}
+.contact-lead b{color:var(--rose-deep);font-weight:700}
+.contact-box{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 18px;border-radius:16px;
+  background:#FFF7F4;border:1px solid rgba(217,122,108,.20);
+}
+.contact-main{flex:1;min-width:0;display:flex;align-items:center;gap:13px}
+.contact-ico{
+  flex:0 0 auto;width:44px;height:44px;border-radius:13px;display:grid;place-items:center;
+  color:var(--rose-deep);background:#fff;border:1px solid rgba(217,122,108,.22);
+}
+.contact-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.contact-label{font-size:11.5px;font-weight:800;letter-spacing:.12em;color:var(--rose-deep);opacity:.9}
+.contact-id{
+  font-size:20px;font-weight:800;color:var(--ink);letter-spacing:.06em;line-height:1.35;
+  word-break:break-word;
+}
+.contact-copy{flex:0 0 auto;padding:13px 22px;font-size:15.5px}
+.contact-note{margin-top:14px;font-size:12.5px;color:var(--ink-3);line-height:1.85}
+.contact-qr{margin-top:16px;display:flex;justify-content:center}
+.contact-qr img{
+  width:190px;height:190px;object-fit:contain;
+  border:1px solid var(--line);border-radius:16px;background:#fff;padding:9px;
+}
+
 /* ============ Toast ============ */
 .toast{
   position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));
@@ -445,6 +475,9 @@ button{font:inherit;color:inherit}
   .option .txt{font-size:14.5px}
   .quiz-nav .btn.ghost{flex:0 0 32%}
   .result-cta .btn{flex:1 1 100%}
+  .contact-box{flex-direction:column;align-items:stretch;gap:13px}
+  .contact-copy{width:100%}
+  .contact-id{font-size:19px}
   .toast{bottom:calc(104px + env(safe-area-inset-bottom))}
 }
 @media (max-width:380px){
@@ -702,6 +735,36 @@ button{font:inherit;color:inherit}
     <div class="card sec">
       <h2><span class="bar"></span>尽量别踩的坑</h2>
       <div class="warn" id="warnBox"></div>
+    </div>
+
+    <!-- ===================== 引流卡 =====================
+         这张卡展示小红书店铺名，不需要填任何个人信息，默认直接显示。
+         改店铺名：把下面那个 shopName 里的文字换掉即可（现在写的是「漫野集」），
+                   复制按钮上的字样和提示语会自动跟着变。
+         想放店铺二维码：把下面 contactQr 那行的 hidden 去掉，再把 img 的 src 换成图片地址；
+                   建议用 data:image/png;base64,... 内嵌，这样整站仍是单文件、不联网。
+         想彻底不要这张卡：给下面这个 div 加上 hidden 属性即可。
+         ================================================== -->
+    <div class="card sec contact-card" id="contactCard" hidden>
+      <h2><span class="bar"></span>如果你还想把感情里别的事看明白一点</h2>
+      <p class="contact-lead">暧昧最折磨人的地方，<b>是你在等一个答案，而答案也在等你</b>。</p>
+      <div class="contact-box">
+        <div class="contact-main">
+          <span class="contact-ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 11.2c2.2-2 5-3.2 8-3.2v20c-3 0-5.8 1.2-8 3.2-2.2-2-5-3.2-8-3.2V8c3 0 5.8 1.2 8 3.2z"/>
+              <path d="M20 11.2v20"/>
+            </svg>
+          </span>
+          <div class="contact-info">
+            <span class="contact-label">小红书 · 店铺</span>
+            <span class="contact-id" id="shopName">漫野集</span>
+          </div>
+        </div>
+        <button type="button" class="btn primary contact-copy" id="btnCopyShop">复制「漫野集」</button>
+      </div>
+      <p class="contact-note">打开小红书，在搜索框输入「漫野集」，更多心事，关注店铺。</p>
+      <div class="contact-qr" id="contactQr" hidden><img src="" alt="小红书店铺二维码"></div>
     </div>
 
     <div class="card sec">
@@ -1327,6 +1390,9 @@ function renderResult(){
   renderAnswersList();
   $('answersList').hidden = true;
   $('btnToggleAns').textContent = '展开查看';
+
+  /* 引流卡 */
+  renderContactCard();
 }
 
 function renderAnswersList(){
@@ -1381,10 +1447,11 @@ function buildSummary(){
   return lines.join('\n');
 }
 
-$('btnCopy').addEventListener('click', function(){
-  var text = buildSummary();
-  var done = function(){ showToast('结果摘要已复制到剪贴板'); };
-  var fail = function(){
+/* ---------- 复制文本（统一走这里） ---------- */
+function copyText(text, okMsg, failMsg){
+  failMsg = failMsg || '复制失败，请长按页面手动选择文本';
+  var done = function(){ showToast(okMsg); };
+  var fallback = function(){
     try {
       var ta = document.createElement('textarea');
       ta.value = text;
@@ -1394,17 +1461,43 @@ $('btnCopy').addEventListener('click', function(){
       ta.select();
       var ok = document.execCommand('copy');
       document.body.removeChild(ta);
-      ok ? done() : showToast('复制失败，请长按页面手动选择文本');
+      if (ok){ done(); } else { showToast(failMsg); }
     } catch (err){
-      showToast('复制失败，请长按页面手动选择文本');
+      showToast(failMsg);
     }
   };
   if (navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(done, fail);
+    navigator.clipboard.writeText(text).then(done, fallback);
   } else {
-    fail();
+    fallback();
   }
+}
+
+$('btnCopy').addEventListener('click', function(){
+  copyText(buildSummary(), '结果摘要已复制到剪贴板', '复制失败，请长按页面手动选择文本');
 });
+
+/* ---------- 引流卡（小红书店铺） ---------- */
+function renderContactCard(){
+  var card = $('contactCard'), nameEl = $('shopName');
+  if (!card || !nameEl) return;
+  var name = (nameEl.textContent || '').trim();
+  /* 店铺名留空时整张卡隐藏，页面上不会出现空白信息 */
+  if (!name){ card.hidden = true; return; }
+  card.hidden = false;
+  var btn = $('btnCopyShop');
+  if (btn) btn.textContent = '复制「' + name + '」';
+}
+
+var btnCopyShop = $('btnCopyShop');
+if (btnCopyShop){
+  btnCopyShop.addEventListener('click', function(){
+    var nameEl = $('shopName');
+    var name = nameEl ? (nameEl.textContent || '').trim() : '';
+    if (!name) return;
+    copyText(name, '已复制「' + name + '」，去小红书搜一下吧', '复制失败，请长按店铺名手动选择');
+  });
+}
 
 /* ============================================================
    8. 流程控制
