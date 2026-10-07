@@ -435,6 +435,15 @@ button{font:inherit;color:inherit}
   font-size:20px;font-weight:800;color:var(--ink);letter-spacing:.06em;line-height:1.35;
   word-break:break-word;
 }
+.contact-sub{
+  display:flex;align-items:baseline;flex-wrap:wrap;gap:6px;
+  margin-top:4px;font-size:12.5px;font-weight:600;color:var(--ink-3);letter-spacing:.02em;
+}
+.contact-sub b{
+  font-size:15.5px;font-weight:800;color:var(--ink);letter-spacing:.08em;
+  font-variant-numeric:tabular-nums;
+  user-select:all;-webkit-user-select:all;
+}
 .contact-copy{flex:0 0 auto;padding:13px 22px;font-size:15.5px}
 .contact-note{margin-top:14px;font-size:12.5px;color:var(--ink-3);line-height:1.85}
 .contact-qr{margin-top:16px;display:flex;justify-content:center}
@@ -478,6 +487,7 @@ button{font:inherit;color:inherit}
   .contact-box{flex-direction:column;align-items:stretch;gap:13px}
   .contact-copy{width:100%}
   .contact-id{font-size:19px}
+  .contact-sub b{font-size:16px}
   .toast{bottom:calc(104px + env(safe-area-inset-bottom))}
 }
 @media (max-width:380px){
@@ -738,9 +748,11 @@ button{font:inherit;color:inherit}
     </div>
 
     <!-- ===================== 引流卡 =====================
-         这张卡展示小红书店铺名，不需要填任何个人信息，默认直接显示。
-         改店铺名：把下面那个 shopName 里的文字换掉即可（现在写的是「漫野集」），
-                   复制按钮上的字样和提示语会自动跟着变。
+         这张卡展示小红书店铺名 + 小红书号，不需要填任何个人信息，默认直接显示。
+         改店铺名：把下面 shopName 里的文字换掉即可（现在写的是「漫野集」）。
+         改小红书号：把下面 shopNo 里的数字换掉即可（现在写的是 679480594）。
+         复制按钮会自动优先复制小红书号（有号时文案为「复制小红书号」，没填号则退回复制店铺名），
+         提示语也会跟着变，改完不用动 JS。
          想放店铺二维码：把下面 contactQr 那行的 hidden 去掉，再把 img 的 src 换成图片地址；
                    建议用 data:image/png;base64,... 内嵌，这样整站仍是单文件、不联网。
          想彻底不要这张卡：给下面这个 div 加上 hidden 属性即可。
@@ -759,11 +771,12 @@ button{font:inherit;color:inherit}
           <div class="contact-info">
             <span class="contact-label">小红书 · 店铺</span>
             <span class="contact-id" id="shopName">漫野集</span>
+            <span class="contact-sub">小红书号 <b id="shopNo">679480594</b></span>
           </div>
         </div>
-        <button type="button" class="btn primary contact-copy" id="btnCopyShop">复制「漫野集」</button>
+        <button type="button" class="btn primary contact-copy" id="btnCopyShop">复制小红书号</button>
       </div>
-      <p class="contact-note">打开小红书，在搜索框输入「漫野集」，更多心事，关注店铺。</p>
+      <p class="contact-note">打开小红书，搜索小红书号「679480594」或店铺名「漫野集」，更多心事，关注店铺。</p>
       <div class="contact-qr" id="contactQr" hidden><img src="" alt="小红书店铺二维码"></div>
     </div>
 
@@ -1478,24 +1491,36 @@ $('btnCopy').addEventListener('click', function(){
 });
 
 /* ---------- 引流卡（小红书店铺） ---------- */
+function readContact(){
+  var nameEl = $('shopName'), noEl = $('shopNo');
+  return {
+    name: nameEl ? (nameEl.textContent || '').trim() : '',
+    no:   noEl   ? (noEl.textContent   || '').trim() : ''
+  };
+}
+
 function renderContactCard(){
-  var card = $('contactCard'), nameEl = $('shopName');
-  if (!card || !nameEl) return;
-  var name = (nameEl.textContent || '').trim();
-  /* 店铺名留空时整张卡隐藏，页面上不会出现空白信息 */
-  if (!name){ card.hidden = true; return; }
+  var card = $('contactCard');
+  if (!card) return;
+  var c = readContact();
+  /* 店铺名和小红书号都为空时整张卡隐藏，页面上不会出现空白信息 */
+  if (!c.name && !c.no){ card.hidden = true; return; }
   card.hidden = false;
+  /* 按钮文案：优先复制小红书号（搜索更精准），没填号则退回复制店铺名 */
   var btn = $('btnCopyShop');
-  if (btn) btn.textContent = '复制「' + name + '」';
+  if (btn) btn.textContent = c.no ? '复制小红书号' : ('复制「' + c.name + '」');
 }
 
 var btnCopyShop = $('btnCopyShop');
 if (btnCopyShop){
   btnCopyShop.addEventListener('click', function(){
-    var nameEl = $('shopName');
-    var name = nameEl ? (nameEl.textContent || '').trim() : '';
-    if (!name) return;
-    copyText(name, '已复制「' + name + '」，去小红书搜一下吧', '复制失败，请长按店铺名手动选择');
+    var c = readContact();
+    var val = c.no || c.name;
+    if (!val) return;
+    var okMsg = c.no
+      ? ('已复制小红书号 ' + c.no + '，去小红书搜一下吧')
+      : ('已复制「' + c.name + '」，去小红书搜一下吧');
+    copyText(val, okMsg, '复制失败，请长按号码手动选择');
   });
 }
 
